@@ -5,9 +5,9 @@
 (() => {
   const I18N = (globalThis.I18N ??= {});
   const IDIOMAS = { "pt-BR": "Português", en: "English", es: "Español" };
-  // anything that isn't Spanish or English stays in the original Portuguese
-  const idiomaDe = (codigo) => { const c = String(codigo || "").toLowerCase(); return c.startsWith("es") ? "es" : c.startsWith("en") ? "en" : "pt-BR"; };
-  let atual = "pt-BR";
+  // this fork: anything that isn't Portuguese or Spanish gets English
+  const idiomaDe = (codigo) => { const c = String(codigo || "").toLowerCase(); return c.startsWith("es") ? "es" : c.startsWith("pt") ? "pt-BR" : "en"; };
+  let atual = "en";
   // a value is a text, a list (Clawd's lines) or a plural { um, outros } chosen by n
   function t(chave, vars = {}) {
     let v = I18N[atual]?.[chave] ?? I18N["pt-BR"]?.[chave] ?? chave;
